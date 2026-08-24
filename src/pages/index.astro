@@ -1,0 +1,239 @@
+---
+import { Image, getImage } from "astro:assets";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import accentImg from "@assets/accent.jpg";
+import featuredImg from "@assets/la-cutout.png";
+import featuredImg2 from "@assets/all-cal-1.png";
+import heroImg from "@assets/notes-hero-v2.jpg";
+
+const title = "Los Angeles Sacred Harp";
+const intro =
+    "Join us for monthly shape note singings around the Los Angeles area. All are welcome; no previous experience or commitment required. Come sing with us!";
+const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google announcements group</a> or <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Facebook group</a>. We recommend you join one of these options for the most current information, as this site is only updated periodically.`;
+
+const bgImageMain = await getImage({ src: heroImg, format: "webp" });
+const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
+---
+
+<BaseLayout id="home">
+    <section class="home-hero" style={`--bg-image: url('${bgImageMain.src}')`}>
+        <div class="content-wrapper">
+            <div class="text-wrapper | flow" data-tempo="m">
+                <h1>{title}</h1>
+                <p class="intro">{intro}</p>
+            </div>
+        </div>
+        <div class="accent-img" style=`--bg-image: url('${bgImageAccent.src}')`>
+            <!-- <Image alt="" format="webp" height={100} src={accentImg} /> -->
+        </div>
+    </section>
+    <div class="sections">
+        <section class="section" data-section="regular-singings" id="singings">
+            <div class="content-wrapper">
+                <div class="panes" data-composition="diptych" data-image-offset>
+                    <div class="text-wrapper">
+                        <h2 class="heading | with-mark">Regular Singings</h2>
+                        <div class="block | flow" data-tempo="s">
+                            <h3>First Sundays in Eagle Rock</h3>
+                            <p>
+                                Singings from the 2025 Sacred Harp (Denson) and
+                                Shenandoah Harmony are hosted at the O’Leary
+                                home in Eagle Rock. Text or call Mary Rose with
+                                questions at (323) 695-3020.
+                            </p>
+                            <p>
+                                3:30 pm – 6:00 pm<br />Eagle Rock, Los Angeles
+                            </p>
+                        </div>
+                        <div class="block | flow" data-tempo="s">
+                            <h3>Second Saturdays in Mar Vista</h3>
+                            <p>
+                                Westside Shapenote invites you to sing from the
+                                2025 Sacred Harp (Denson) and Shenandoah Harmony
+                                in beautiful Mar Vista. Beginners welcome.
+                                Questions? Text Peter at (310) 591-7098.
+                            </p>
+                            <p>
+                                2:00 pm – 4:30 pm<br />3986 Berryman Ave, Los
+                                Angeles, CA 90066
+                            </p>
+                        </div>
+                        <div class="block | flow" data-tempo="s">
+                            <h3>Fourth Saturdays in Pasadena</h3>
+                            <p>
+                                Join us on the fourth Saturday of every month in
+                                Pasadena for singings from the 2025 Sacred Harp
+                                (Denson) and Christian Harmony books. Loaners
+                                are available for those who don’t have a copy.
+                            </p>
+                            <p>
+                                2:00 pm – 4:30 pm<br /><em
+                                    >Orange Grove Friends Meetinghouse</em
+                                ><br />520 E. Orange Grove Blvd, Pasadena, CA
+                                91104
+                            </p>
+                        </div>
+                        <div class="block flow" data-tempo="s">
+                            <h3>Annual All-California Convention</h3>
+                            <p>
+                                Third Sunday, and the Saturday before, in
+                                January. This two-day convention draws singers
+                                from all over the state and country and rotates
+                                every year between the San Francisco Bay Area
+                                and Los Angeles. The next singing will take
+                                place in the Bay Area on January 16–17, 2027.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="image-wrapper">
+                        <Image
+                            alt=""
+                            class="featured-image"
+                            format="webp"
+                            loading="eager"
+                            src={featuredImg2}
+                            width={900}
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section" data-section="connect" id="connect">
+            <div class="content-wrapper">
+                <div class="panes" data-composition="diptych" data-image-offset>
+                    <div class="image-wrapper">
+                        <Image
+                            alt=""
+                            format="webp"
+                            src={featuredImg}
+                            style="opacity: 0.6"
+                            width={900}
+                        />
+                    </div>
+                    <div class="text-wrapper | flow" data-tempo="2xs">
+                        <h2 class="heading with-mark">Connect</h2>
+                        <p set:html={connect} />
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</BaseLayout>
+
+<style>
+    h1 {
+        font-size: var(--step-6);
+    }
+
+    .home-hero {
+        padding-block-start: 14rem;
+        color: var(--brown-4);
+        background:
+            linear-gradient(to top, rgb(30 64 90 / 96%), rgb(30 64 90 / 25%)),
+            var(--bg-image) center / cover no-repeat;
+    }
+
+    .text-wrapper {
+        max-width: 48rem;
+        padding-block-end: 4rem;
+    }
+
+    .accent-img {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        background: var(--bg-image) center / contain repeat;
+        height: 3.5rem;
+
+        /* & img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        } */
+    }
+
+    .sections {
+        margin-block-start: var(--space-3xl);
+
+        & > * + * {
+            margin-block-start: var(--space-2xl);
+        }
+    }
+
+    .section {
+        &[data-section="regular-singings"] {
+            & .panes {
+                --panes-align: flex-start;
+            }
+        }
+    }
+
+    .block {
+        & p {
+            font-size: var(--step-0);
+        }
+
+        &:not(:first-of-type) {
+            margin-block-start: var(--space-m);
+            padding-block-start: var(--space-m);
+            border-block-start: 1px solid var(--brown-5);
+        }
+    }
+
+    .heading {
+        position: relative;
+        margin-block-end: var(--space-l);
+
+        &.with-mark {
+            display: inline-block;
+
+            &::before {
+                content: "";
+                position: absolute;
+                z-index: -1;
+                top: -0.25rem;
+                left: -2.5rem;
+                height: 85%;
+                width: calc(100% + 2.5rem);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='32' viewBox='0 0 16 32'%3E%3Cg fill='%2385b5af' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 24h4v2H0v-2zm0 4h6v2H0v-2zm0-8h2v2H0v-2zM0 0h4v2H0V0zm0 4h2v2H0V4zm16 20h-6v2h6v-2zm0 4H8v2h8v-2zm0-8h-4v2h4v-2zm0-20h-6v2h6V0zm0 4h-4v2h4V4zm-2 12h2v2h-2v-2zm0-8h2v2h-2V8zM2 8h10v2H2V8zm0 8h10v2H2v-2zm-2-4h14v2H0v-2zm4-8h6v2H4V4zm0 16h6v2H4v-2zM6 0h2v2H6V0zm0 24h2v2H6v-2z'/%3E%3C/g%3E%3C/svg%3E");
+            }
+        }
+    }
+
+    .featured-image {
+        border-radius: 3px;
+    }
+
+    @media (max-width: 640px) {
+        h1 {
+            font-size: var(--step-5);
+        }
+
+        .panes {
+            --panes-gap: var(--space-s);
+            --panes-width: 100% !important;
+
+            &[data-composition="diptych"] {
+                --panes-width: 100%;
+
+                &[data-image-offset] {
+                    & .text-wrapper {
+                        --panes-width: 100%;
+                    }
+
+                    & .image-wrapper {
+                        --panes-width: 100%;
+                    }
+                }
+            }
+
+            & .text-wrapper {
+                order: 1;
+            }
+
+            & .image-wrapper {
+                order: 2;
+            }
+        }
+    }
+</style>

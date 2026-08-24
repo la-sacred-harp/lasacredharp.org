@@ -1,0 +1,55 @@
+:root {
+    color-scheme: light;
+
+    /* Color palettes use @radix-ui/colors, imported in site.css */
+    /* @link https://www.radix-ui.com/colors */
+
+    --color-indigo: rgb(30 64 90 / var(--color-indigo-alpha, 100%));
+    --color-teal: rgb(43 90 84 / var(--color-teal-alpha, 100%));
+
+    /* Brand Primary & Accent */
+    --theme-primary--base: var(--jade-11);
+    --theme-primary--text-light: var(--jade-3);
+    --theme-primary--light: var(--jade-3);
+    --theme-primary--medium: var(--jade-9);
+    --theme-primary--dark: var(--jade-12);
+    --theme-secondary--base: var(--brown-9);
+    --theme-secondary--light: var(--brown-3);
+    --theme-secondary--dark: var(--brown-12);
+
+    /* Neutrals */
+    --theme-white: #fff;
+    --theme-white--faded: color-mix(
+        in srgb,
+        var(--theme-white),
+        transparent 7%
+    );
+    --theme-neutral--base: var(--gray-8);
+    --theme-neutral--light: var(--gray-1);
+    --theme-neutral--dark: var(--gray-12);
+    --theme-neutral--text: var(--gray-12);
+    --theme-neutral--text-light: var(--gray-10);
+    --theme-neutral--text-reverse: var(--gray-1);
+    --theme-neutral--border: var(--gray-3);
+    --theme-neutral--border-light: var(--gray-2);
+    --theme-neutral--border-dark: var(--gray-4);
+
+    /* Other Theme Styles */
+    --ratio-default-portrait: 3/4;
+    --ratio-default-landscape: 4/3;
+    --radius-xs: 0.25rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 2rem;
+    --shadow-none: 0px 0px 0px 0px rgb(0 0 0 / 0%);
+    --shadow-base: 0 3px 16px rgb(0 0 0 / 5%);
+    --shadow-large: 0 4px 32px 0 rgb(0 0 0 / 14%);
+
+    scroll-behavior: smooth;
+}
+
+/* Apply base theme styles */
+body {
+    color: var(--theme-neutral--text);
+    background-color: var(--brown-4);
+}

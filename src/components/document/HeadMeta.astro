@@ -1,0 +1,68 @@
+---
+import { type PageMeta, siteConfig } from "@content/siteConfig";
+
+interface Props {
+    id?: string;
+    meta?: PageMeta["meta"];
+    openGraph?: PageMeta["openGraph"];
+}
+
+const { id, meta, openGraph } = Astro.props;
+
+const currentPath = Astro.url.pathname;
+let canonicalURL = siteConfig.domain;
+
+if (currentPath == "/") {
+    canonicalURL += "/";
+} else {
+    if (currentPath.endsWith("/")) {
+        canonicalURL += currentPath;
+    } else {
+        canonicalURL += currentPath + "/";
+    }
+}
+
+let title = meta?.title;
+if (title) {
+    if (currentPath != "/") {
+        title += ` • ${siteConfig.title}`;
+    }
+}
+---
+
+<!-- General -->
+<title>{title ?? siteConfig.defaultMeta.title}</title>
+<meta
+    content={meta?.description ?? siteConfig.defaultMeta.description}
+    name="description"
+/>
+<link href={canonicalURL} rel="canonical" />
+<meta content={Astro.generator} name="generator" />
+<meta content="index, follow" name="robots" />
+<!-- OG -->
+<meta
+    content={openGraph?.title ?? siteConfig.defaultOpenGraph.title}
+    property="og:title"
+/>
+<meta
+    content={openGraph?.description ?? siteConfig.defaultOpenGraph.description}
+    property="og:description"
+/>
+<meta content="website" property="og:type" />
+<!-- TODO: update og image -->
+<meta
+    content={id
+        ? `${siteConfig.domain}/og/${id}.png`
+        : `${siteConfig.domain}/images/default-og.png`}
+    property="og:image"
+/>
+<meta
+    content={openGraph?.title ?? siteConfig.defaultOpenGraph.title}
+    property="og:image:alt"
+/>
+<meta content={canonicalURL} property="og:url" />
+<!-- Sitemap & Feed -->
+<link href="/sitemap-index.xml" rel="sitemap" />
+<!-- Favicon -->
+<link href="favicon.svg" rel="icon" type="image/svg+xml" />
+<link href="favicon.svg" rel="shortcut icon" />

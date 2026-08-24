@@ -1,0 +1,58 @@
+---
+import "@styles/site.css";
+import HeadAssets from "@components/document/HeadAssets.astro";
+import HeadMeta from "@components/document/HeadMeta.astro";
+import type { PageMeta } from "@content/siteConfig";
+import SiteHeader from "@components/navigation/SiteHeader.astro";
+
+interface Props {
+    id?: string;
+    pageMeta?: PageMeta;
+}
+
+const { id, pageMeta } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <HeadMeta
+            id={id}
+            meta={pageMeta?.meta}
+            openGraph={pageMeta?.openGraph}
+        />
+        <HeadAssets />
+    </head>
+    <body>
+        <!-- <SiteHeader /> -->
+        <main
+            class:list={["page"]}
+            data-page={id}
+            id="main-content"
+            tabindex="-1"
+        >
+            <slot />
+            <footer class="site-footer">
+                <div class="content-wrapper">
+                    Site design and admin by <a
+                        href="https://daniel-saunders.com/"
+                        target="_blank">DS</a
+                    >. Please <a href="mailto:support@ds-design-studio.com"
+                        >contact us</a
+                    > with any website issues.
+                </div>
+            </footer>
+        </main>
+    </body>
+</html>
+
+<style>
+    .site-footer {
+        margin-block-start: 8rem;
+        padding-block-end: 1rem;
+        text-align: center;
+        font-size: var(--step--1);
+    }
+</style>
