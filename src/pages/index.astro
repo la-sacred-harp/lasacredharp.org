@@ -3,13 +3,13 @@ import { Image, getImage } from "astro:assets";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import accentImg from "@assets/accent.jpg";
 import featuredImg from "@assets/la-cutout.png";
-import featuredImg2 from "@assets/all-cal-1.png";
+import featuredImg2 from "@assets/all-cal-2.png";
 import heroImg from "@assets/notes-hero-v2.jpg";
 
 const title = "Los Angeles Sacred Harp";
 const intro =
-    "Join us for monthly shape note singings around the Los Angeles area. All are welcome; no previous experience or commitment required. Come sing with us!";
-const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google announcements group</a> or <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Facebook group</a>. We recommend you join one of these options for the most current information, as this site is only updated periodically.`;
+    "Join us around the Los Angeles area for monthly singings from the Sacred Harp and other shape-note tunebooks. All are welcome; no previous experience or commitment required. Come sing with us!";
+const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google discussion group</a> or <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Facebook group</a>. We recommend you join one of these options for the most current information, as this site is only updated periodically.`;
 
 const bgImageMain = await getImage({ src: heroImg, format: "webp" });
 const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
