@@ -1,5 +1,5 @@
 :root {
-    --gutter-spacing: var(--space-m);
+    --gutter-spacing: var(--space-xl);
     --section-spacing: 8rem;
     --wrapper-max-width: 90rem;
     --wrapper-base-width: 84rem;
