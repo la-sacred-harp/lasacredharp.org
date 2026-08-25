@@ -176,7 +176,7 @@
     row-gap: var(--grid-row-gap, var(--gutter-spacing));
 
     & > * {
-        grid-column: span 3;
+        grid-column: var(--grid-col-span, span 3);
     }
 }
 

@@ -9,7 +9,8 @@ import heroImg from "@assets/notes-hero-v2.jpg";
 const title = "Los Angeles Sacred Harp";
 const intro =
     "Join us around the Los Angeles area for monthly singings from the Sacred Harp and other shape-note tunebooks. All are welcome; no previous experience or commitment required. Come sing with us!";
-const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google discussion group</a> or <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Facebook group</a>. We recommend you join one of these options for the most current information, as this site is only updated periodically.`;
+const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google discussion group</a> for notifications (requires a Google account) or the <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Los Angeles Area Shape Note Singers</a> public Facebook group. We recommend you join one of these options for the most current information, as this site is updated only periodically.`;
+const contactEmail = "losangelessacredharp@gmail.com";
 
 const bgImageMain = await getImage({ src: heroImg, format: "webp" });
 const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
@@ -30,7 +31,7 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
     <div class="sections">
         <section class="section" data-section="regular-singings" id="singings">
             <div class="content-wrapper">
-                <div class="panes" data-composition="diptych" data-image-offset>
+                <div class="grid-12">
                     <div class="text-wrapper">
                         <h2 class="heading | with-mark">Regular Singings</h2>
                         <div class="block | flow" data-tempo="s">
@@ -74,7 +75,7 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                             </p>
                         </div>
                         <div class="block flow" data-tempo="s">
-                            <h3>Annual All-California Convention</h3>
+                            <h3>✻ Annual All-California Convention</h3>
                             <p>
                                 Third Sunday, and the Saturday before, in
                                 January. This two-day convention draws singers
@@ -86,14 +87,16 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                         </div>
                     </div>
                     <div class="image-wrapper">
-                        <Image
-                            alt=""
-                            class="featured-image"
-                            format="webp"
-                            loading="eager"
-                            src={featuredImg2}
-                            width={900}
-                        />
+                        <div class="flow" data-tempo="xl">
+                            <Image
+                                alt=""
+                                class="featured-image"
+                                format="webp"
+                                loading="eager"
+                                src={featuredImg2}
+                                width={900}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -162,8 +165,14 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
 
     .section {
         &[data-section="regular-singings"] {
-            & .panes {
-                --panes-align: flex-start;
+            & .grid-12 {
+                & .text-wrapper {
+                    --grid-col-span: span 6;
+                }
+
+                & .image-wrapper {
+                    --grid-col-span: 8/13;
+                }
             }
         }
     }
@@ -207,6 +216,22 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
     @media (max-width: 640px) {
         h1 {
             font-size: var(--step-5);
+        }
+
+        .section {
+            &[data-section="regular-singings"] {
+                & .grid-12 {
+                    grid-template-columns: 1fr;
+
+                    & .text-wrapper {
+                        --grid-col-span: 1/1;
+                    }
+
+                    & .image-wrapper {
+                        --grid-col-span: 1/1;
+                    }
+                }
+            }
         }
 
         .panes {
