@@ -19,3 +19,4 @@
 
 /** Main */
 @import "components/bg-image.css" layer(main);
+@import "components/heading.css" layer(main);

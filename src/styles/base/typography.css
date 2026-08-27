@@ -39,6 +39,7 @@
 
 /* Body styles */
 body {
+    --link-color: var(--color-indigo);
     font-family: var(--font-primary);
     font-size: var(--step-1);
     line-height: var(--font-leading--normal);

@@ -1,31 +1,31 @@
 ---
 import { Image, getImage } from "astro:assets";
+import BannerCTA from "@components/BannerCTA.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import accentImg from "@assets/accent.jpg";
-import featuredImg from "@assets/la-cutout.png";
-import featuredImg2 from "@assets/all-cal-2.png";
+import featuredImg from "@assets/featured-shapes-1.jpg";
+import featuredImg2 from "@assets/all-cal-3.jpg";
 import heroImg from "@assets/notes-hero-v2.jpg";
+import notesBG from "@assets/notes-bg.jpg";
 
 const title = "Los Angeles Sacred Harp";
 const intro =
     "Join us around the Los Angeles area for monthly singings from the Sacred Harp and other shape-note tunebooks. All are welcome; no previous experience or commitment required. Come sing with us!";
 const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google discussion group</a> for notifications (requires a Google account) or the <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Los Angeles Area Shape Note Singers</a> public Facebook group. We recommend you join one of these options for the most current information, as this site is updated only periodically.`;
-const contactEmail = "losangelessacredharp@gmail.com";
 
 const bgImageMain = await getImage({ src: heroImg, format: "webp" });
 const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
 ---
 
 <BaseLayout id="home">
+    <div class="accent-img" style=`--bg-image: url('${bgImageAccent.src}')`>
+    </div>
     <section class="home-hero" style={`--bg-image: url('${bgImageMain.src}')`}>
         <div class="content-wrapper">
             <div class="text-wrapper | flow" data-tempo="m">
                 <h1>{title}</h1>
                 <p class="intro">{intro}</p>
             </div>
-        </div>
-        <div class="accent-img" style=`--bg-image: url('${bgImageAccent.src}')`>
-            <!-- <Image alt="" format="webp" height={100} src={accentImg} /> -->
         </div>
     </section>
     <div class="sections">
@@ -84,10 +84,30 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                                 and Los Angeles. The next singing will take
                                 place in the Bay Area on January 16–17, 2027.
                             </p>
+                            <p>
+                                <em>
+                                    Listen to recordings from the 2026
+                                    All-California Convention on YouTube: <a
+                                        href="https://www.youtube.com/live/ZGQd6kt-wBo?si=f7IIkubSaibNUlNG"
+                                        target="_blank">Saturday singing</a
+                                    > & <a
+                                        href="https://www.youtube.com/live/VLXRPQ5rcWM?si=5oCl7UY31elMzaG4"
+                                        target="_blank">Sunday singing</a
+                                    >
+                                </em>
+                            </p>
                         </div>
                     </div>
                     <div class="image-wrapper">
                         <div class="flow" data-tempo="xl">
+                            <Image
+                                alt=""
+                                class="featured-image"
+                                format="webp"
+                                loading="eager"
+                                src={featuredImg}
+                                width={900}
+                            />
                             <Image
                                 alt=""
                                 class="featured-image"
@@ -101,25 +121,12 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                 </div>
             </div>
         </section>
-        <section class="section" data-section="connect" id="connect">
-            <div class="content-wrapper">
-                <div class="panes" data-composition="diptych" data-image-offset>
-                    <div class="image-wrapper">
-                        <Image
-                            alt=""
-                            format="webp"
-                            src={featuredImg}
-                            style="opacity: 0.6"
-                            width={900}
-                        />
-                    </div>
-                    <div class="text-wrapper | flow" data-tempo="2xs">
-                        <h2 class="heading with-mark">Connect</h2>
-                        <p set:html={connect} />
-                    </div>
-                </div>
-            </div>
-        </section>
+        <BannerCTA
+            heading="Connect"
+            id="connect"
+            image={notesBG}
+            text={connect}
+        />
     </div>
 </BaseLayout>
 
@@ -190,23 +197,7 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
     }
 
     .heading {
-        position: relative;
         margin-block-end: var(--space-l);
-
-        &.with-mark {
-            display: inline-block;
-
-            &::before {
-                content: "";
-                position: absolute;
-                z-index: -1;
-                top: -0.25rem;
-                left: -2.5rem;
-                height: 85%;
-                width: calc(100% + 2.5rem);
-                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='32' viewBox='0 0 16 32'%3E%3Cg fill='%2385b5af' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 24h4v2H0v-2zm0 4h6v2H0v-2zm0-8h2v2H0v-2zM0 0h4v2H0V0zm0 4h2v2H0V4zm16 20h-6v2h6v-2zm0 4H8v2h8v-2zm0-8h-4v2h4v-2zm0-20h-6v2h6V0zm0 4h-4v2h4V4zm-2 12h2v2h-2v-2zm0-8h2v2h-2V8zM2 8h10v2H2V8zm0 8h10v2H2v-2zm-2-4h14v2H0v-2zm4-8h6v2H4V4zm0 16h6v2H4v-2zM6 0h2v2H6V0zm0 24h2v2H6v-2z'/%3E%3C/g%3E%3C/svg%3E");
-            }
-        }
     }
 
     .featured-image {

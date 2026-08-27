@@ -1,0 +1,57 @@
+---
+import { Image, getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
+interface Props {
+    id: string;
+    heading: string;
+    text: string;
+    image: ImageMetadata;
+}
+
+const { id, heading, text, image } = Astro.props;
+
+const bgImage = await getImage({ src: image, format: "webp" });
+---
+
+<section
+    class="section"
+    data-section="banner-cta"
+    id={id}
+    style={`--bg-image: url('${bgImage.src}')`}
+>
+    <div class="content-wrapper">
+        <div class="text-wrapper | flow" data-tempo="xs">
+            <h2 class="heading with-mark">{heading}</h2>
+            <p set:html={text} />
+        </div>
+    </div>
+    <!-- <Image alt="" class="bg-image" format="webp" src={bgImage} width={1200} /> -->
+</section>
+
+<style>
+    .section {
+        position: relative;
+        padding-block: var(--space-2xl);
+        background: var(--bg-image) center / cover no-repeat;
+    }
+
+    .content-wrapper {
+        z-index: 2;
+        max-width: 55rem;
+        background:
+            linear-gradient(
+                to bottom,
+                color-mix(in srgb, var(--brown-4), transparent 20%)
+            ),
+            url("/images/handmadepaper.webp") repeat;
+    }
+
+    .text-wrapper {
+        padding-block: var(--gutter-spacing);
+    }
+
+    .bg-image {
+        opacity: 1;
+    }
+</style>

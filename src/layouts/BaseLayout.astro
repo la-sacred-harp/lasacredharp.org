@@ -11,6 +11,8 @@ interface Props {
 }
 
 const { id, pageMeta } = Astro.props;
+
+const contactEmail = "losangelessacredharp@gmail.com";
 ---
 
 <!doctype html>
@@ -39,9 +41,8 @@ const { id, pageMeta } = Astro.props;
                     Site design and admin by <a
                         href="https://daniel-saunders.com/"
                         target="_blank">DS</a
-                    >. Please <a href="mailto:support@ds-design-studio.com"
-                        >contact us</a
-                    > with any website issues.
+                    >. Please <a href=`mailto:${contactEmail}`>contact us</a> with
+                    questions, updates, or website issues.
                 </div>
             </footer>
         </main>
