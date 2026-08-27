@@ -8,6 +8,11 @@ import featuredImg2 from "@assets/all-cal-3.jpg";
 import heroImg from "@assets/notes-hero-v2.jpg";
 import notesBG from "@assets/notes-bg.jpg";
 
+const nav = [
+    { title: "Singings", href: "#singings" },
+    { title: "Connect", href: "#connect" },
+];
+
 const title = "Los Angeles Sacred Harp";
 const intro =
     "Join us around the Los Angeles area for monthly singings from the Sacred Harp and other shape-note tunebooks. All are welcome; no previous experience or commitment required. Come sing with us!";
@@ -25,6 +30,17 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
             <div class="text-wrapper | flow" data-tempo="m">
                 <h1>{title}</h1>
                 <p class="intro">{intro}</p>
+                <nav aria-label="Primary" class="cluster">
+                    <ul class="cluster">
+                        {
+                            nav.map((item) => (
+                                <li>
+                                    <a href={item.href}>{item.title}</a>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </nav>
             </div>
         </div>
     </section>
@@ -101,7 +117,7 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                     <div class="image-wrapper">
                         <div class="flow" data-tempo="xl">
                             <Image
-                                alt=""
+                                alt="Various shape-note gatherings depiciting a large group of singers singing from the Sacred Harp."
                                 class="featured-image"
                                 format="webp"
                                 loading="eager"
@@ -109,7 +125,7 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                                 width={900}
                             />
                             <Image
-                                alt=""
+                                alt="A shape-note convention with singers facing the hollow square while a leader directs a tune."
                                 class="featured-image"
                                 format="webp"
                                 loading="eager"
@@ -141,6 +157,24 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
         background:
             linear-gradient(to top, rgb(30 64 90 / 96%), rgb(30 64 90 / 25%)),
             var(--bg-image) center / cover no-repeat;
+
+        & nav {
+            --cluster-space: var(--space-xs);
+            font-size: var(--step-0);
+
+            & ul > * + * {
+                &::before {
+                    content: "✻";
+                    color: var(--brown-8);
+                    /* font-size: 20px; */
+                    margin-inline-end: var(--cluster-space);
+                }
+            }
+
+            & a {
+                color: var(--brown-4);
+            }
+        }
     }
 
     .text-wrapper {
