@@ -39,9 +39,9 @@
 
 /* Body styles */
 body {
-    --link-color: var(--color-indigo);
+    --link-color: var(--color-teal);
     font-family: var(--font-primary);
-    font-size: var(--step-1);
+    font-size: var(--step-0);
     line-height: var(--font-leading--normal);
 }
 

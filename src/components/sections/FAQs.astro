@@ -1,0 +1,45 @@
+---
+import { getCollection } from "astro:content";
+
+interface Props {
+    id?: string;
+    heading?: string;
+}
+
+const { id = "faqs", heading = "Frequently Asked Questions" } = Astro.props;
+
+const faqs = await getCollection("faqs");
+---
+
+<section class="section" data-section="faqs" id={id}>
+    <div class="content-wrapper | with-sidebar">
+        <div class="sidebar-panel">
+            <h2 class="heading with-mark">{heading}</h2>
+        </div>
+        <div class="main-panel">
+            <div class="items">
+                {
+                    faqs.map((faq) => (
+                        <div class="faq | flow" data-tempo="s">
+                            <h3>{faq.data.title}</h3>
+                            <p set:html={faq.data.content} />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .with-sidebar {
+        --sidebar-gap: var(--space-2xl);
+        --sidebar-min-width: 30rem;
+    }
+
+    .items {
+        & > * + * {
+            margin-block-start: var(--space-xl);
+        }
+    }
+</style>

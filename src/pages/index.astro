@@ -1,27 +1,36 @@
 ---
 import { Image, getImage } from "astro:assets";
-import BannerCTA from "@components/BannerCTA.astro";
+import { getCollection, getEntry, render } from "astro:content";
+import BannerCTA from "@components/sections/BannerCTA.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
+import FAQs from "@components/sections/FAQs.astro";
+import Gallery from "@components/sections/Gallery.astro";
 import accentImg from "@assets/accent.jpg";
 import featuredImg from "@assets/all-cal-4.jpg";
-import featuredImg2 from "@assets/all-cal-3.jpg";
-import featuredImg3 from "@assets/all-cal-5.jpg";
+import featuredImg2 from "@assets/group-sing-1.jpg";
+import featuredImg3 from "@assets/group-sing-2.jpg";
 import featuredImg4 from "@assets/shape-mi.png";
+import gallery1 from "@assets/notes-bg-2.jpg";
+import gallery2 from "@assets/gallery-2.jpeg";
+import gallery3 from "@assets/gallery-3.jpg";
+import gallery4 from "@assets/gallery-4.jpg";
+import gallery5 from "@assets/gallery-5.jpg";
+import gallery6 from "@assets/ShapeNoteA.jpg";
+import gallery7 from "@assets/ShapeNote9.jpg";
+import gallery8 from "@assets/all-cal-1.png";
 import heroImg from "@assets/notes-hero-v2.jpg";
 import notesBG from "@assets/notes-bg.jpg";
-
-const nav = [
-    { title: "Singings", href: "#singings" },
-    { title: "Connect", href: "#connect" },
-];
 
 const title = "Los Angeles Sacred Harp";
 const intro =
     "Join us around the Los Angeles area for monthly singings from the Sacred Harp and other shape-note tunebooks. All are welcome; no previous experience or commitment required. Come sing with us!";
-const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google discussion group</a> for notifications (requires a Google account) or the <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Los Angeles Area Shape Note Singers</a> public Facebook group. We recommend you join one of these options for the most current information, as this site is updated only periodically.`;
+const connect = `We welcome you to join us at a singing! Stay updated by joining our <a href="https://groups.google.com/g/fasola-los-angeles-announcements" target="_blank">Google discussion group</a> for notifications (requires a Google account) or the <a href="https://www.facebook.com/groups/523008111164440" target="_blank">Los Angeles Area Shape Note Singers</a> public Facebook group. We recommend you join one of these options for the most current information, as this site is updated only periodically. Alternatively, you can <a href="mailto:losangelessacredharp@gmail.com" target="_blank">contact us</a> directly with questions.`;
 
 const bgImageMain = await getImage({ src: heroImg, format: "webp" });
 const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
+
+const singings = await getCollection("singings");
+const nav = await getEntry("navs", "home");
 ---
 
 <BaseLayout id="home">
@@ -35,7 +44,7 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                 <nav aria-label="Primary" class="cluster">
                     <ul class="cluster">
                         {
-                            nav.map((item) => (
+                            nav?.data.entries.map((item) => (
                                 <li>
                                     <a href={item.href}>{item.title}</a>
                                 </li>
@@ -52,71 +61,15 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                 <div class="grid-12">
                     <div class="text-wrapper">
                         <h2 class="heading | with-mark">Regular Singings</h2>
-                        <div class="block | flow" data-tempo="s">
-                            <h3>First Sundays in Eagle Rock</h3>
-                            <p>
-                                Singings from the 2025 Sacred Harp (Denson) and
-                                Shenandoah Harmony are hosted at the O’Leary
-                                home in Eagle Rock. Text or call Mary Rose with
-                                questions at (323) 695-3020.
-                            </p>
-                            <p>
-                                3:30 pm – 6:00 pm<br />Eagle Rock, Los Angeles
-                            </p>
-                        </div>
-                        <div class="block | flow" data-tempo="s">
-                            <h3>Second Saturdays in Mar Vista</h3>
-                            <p>
-                                Westside Shapenote invites you to sing from the
-                                2025 Sacred Harp (Denson) and Shenandoah Harmony
-                                in beautiful Mar Vista. Beginners welcome.
-                                Questions? Text Peter at (310) 591-7098.
-                            </p>
-                            <p>
-                                2:00 pm – 4:30 pm<br />3986 Berryman Ave, Los
-                                Angeles, CA 90066
-                            </p>
-                        </div>
-                        <div class="block | flow" data-tempo="s">
-                            <h3>Fourth Saturdays in Pasadena</h3>
-                            <p>
-                                Join us on the fourth Saturday of every month in
-                                Pasadena for singings from the 2025 Sacred Harp
-                                (Denson) and Christian Harmony books. Loaners
-                                are available for those who don’t have a copy.
-                            </p>
-                            <p>
-                                2:00 pm – 4:30 pm<br /><em
-                                    >Orange Grove Friends Meetinghouse</em
-                                ><br />520 E. Orange Grove Blvd, Pasadena, CA
-                                91104
-                            </p>
-                        </div>
-                        <div class="block flow" data-tempo="s">
-                            <h3>✻ Annual All-California Convention</h3>
-                            <p>
-                                Third Sunday, and the Saturday before, in
-                                January. This two-day convention draws singers
-                                from all over the state and country and rotates
-                                every year between the San Francisco Bay Area
-                                and Los Angeles. <strong
-                                    >The next singing will take place in the Bay
-                                    Area on January 16–17, 2027.</strong
-                                >
-                            </p>
-                            <p>
-                                <em>
-                                    Listen to recordings from the 2026
-                                    All-California Convention on YouTube: <a
-                                        href="https://www.youtube.com/live/ZGQd6kt-wBo?si=f7IIkubSaibNUlNG"
-                                        target="_blank">Saturday singing</a
-                                    > & <a
-                                        href="https://www.youtube.com/live/VLXRPQ5rcWM?si=5oCl7UY31elMzaG4"
-                                        target="_blank">Sunday singing</a
-                                    >
-                                </em>
-                            </p>
-                        </div>
+                        {singings.sort((a, b) => a.data.order - b.data.order).map(async (item) => {
+                            const { Content } = await render(item);
+                            return (
+                                <div class="block | flow" data-tempo="s">
+                                    <h3>{item.data.title}</h3>
+                                    <Content />
+                                </div>
+                            );
+                        })}
                     </div>
                     <div class="image-wrapper">
                         <div class="flow" data-tempo="l">
@@ -128,22 +81,24 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
                                 src={featuredImg}
                                 width={900}
                             />
-                            <Image
-                                alt="Four women leading from the hollow square."
-                                class="featured-image offset-left"
-                                format="webp"
-                                loading="eager"
-                                src={featuredImg3}
-                                width={900}
-                            />
-                            <Image
-                                alt=""
-                                class="featured-image background"
-                                format="webp"
-                                loading="eager"
-                                src={featuredImg4}
-                                width={900}
-                            />
+                            <div class="relative">
+                                <Image
+                                    alt="Four women leading from the hollow square."
+                                    class="featured-image offset-left"
+                                    format="webp"
+                                    loading="eager"
+                                    src={featuredImg3}
+                                    width={900}
+                                />
+                                <Image
+                                    alt=""
+                                    class="featured-image background"
+                                    format="webp"
+                                    loading="eager"
+                                    src={featuredImg4}
+                                    width={900}
+                                />
+                            </div>
                             <Image
                                 alt="A shape-note convention with singers facing the hollow square while a leader directs a tune."
                                 class="featured-image"
@@ -163,6 +118,17 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
             image={notesBG}
             text={connect}
         />
+        <FAQs />
+        <!-- <Gallery images={[
+            {src: gallery7},
+            {src: gallery1},
+            {src: gallery5},
+            {src: gallery3},
+            {src: gallery4},
+            {src: gallery6},
+            {src: gallery2},
+            {src: gallery8},
+        ]} /> -->
     </div>
 </BaseLayout>
 
@@ -173,6 +139,7 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
 
     .home-hero {
         padding-block-start: 14rem;
+        font-size: var(--step-1);
         color: var(--brown-4);
         background:
             linear-gradient(to top, rgb(30 64 90 / 96%), rgb(30 64 90 / 25%)),
@@ -218,6 +185,8 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
 
     .section {
         &[data-section="regular-singings"] {
+            overflow: hidden;
+            
             & .grid-12 {
                 & .text-wrapper {
                     --grid-col-span: span 7;
@@ -232,10 +201,6 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
     }
 
     .block {
-        & p {
-            font-size: var(--step-0);
-        }
-
         &:not(:first-of-type) {
             margin-block-start: var(--space-m);
             padding-block-start: var(--space-m);
@@ -258,8 +223,8 @@ const bgImageAccent = await getImage({ src: accentImg, format: "webp" });
         &.background {
             position: absolute;
             z-index: -1;
-            bottom: 1%;
-            right: 8%;
+            bottom: 0;
+            right: -2rem;
             width: 100%;
             transform: scale(1.3);
             /* max-width: 12rem; */
