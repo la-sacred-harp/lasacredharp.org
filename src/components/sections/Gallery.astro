@@ -1,0 +1,72 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    id?: string;
+    images: {
+        alt?: string;
+        src: ImageMetadata;
+        caption?: string;
+    }[];
+}
+
+const { id = "gallery", images } = Astro.props;
+---
+
+<section class="section" data-section="gallery" id={id}>
+    <div class="gallery">
+        {
+            images.map((image) => (
+                <figure>
+                    <Image
+                        alt={image.alt ?? ""}
+                        format="webp"
+                        src={image.src}
+                        width={600}
+                    />
+                </figure>
+            ))
+        }
+    </div>
+    <div class="content-wrapper">
+        <p class="scroll-help"><em>Scroll →</em></p>
+    </div>
+</section>
+
+<style>
+    .section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .gallery {
+        display: flex;
+        gap: 0.25rem;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+
+        & > * {
+            flex: 1 0 content;
+            height: var(--gallery-image-height, 22rem);
+            width: auto;
+            scroll-snap-align: center;
+        }
+
+        & img {
+            height: 100%;
+            width: auto;
+            object-fit: cover;
+        }
+    }
+
+    .scroll-help {
+        font-size: var(--step--1);
+        margin-block-start: 0.5rem;
+    }
+
+    @media (max-width: 640px) {
+        .gallery {
+            --gallery-image-height: 18rem;
+        }
+    }
+</style>

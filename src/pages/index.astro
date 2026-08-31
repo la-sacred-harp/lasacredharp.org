@@ -61,15 +61,22 @@ const nav = await getEntry("navs", "home");
                 <div class="grid-12">
                     <div class="text-wrapper">
                         <h2 class="heading | with-mark">Regular Singings</h2>
-                        {singings.sort((a, b) => a.data.order - b.data.order).map(async (item) => {
-                            const { Content } = await render(item);
-                            return (
-                                <div class="block | flow" data-tempo="s">
-                                    <h3>{item.data.title}</h3>
-                                    <Content />
-                                </div>
-                            );
-                        })}
+                        {
+                            singings
+                                .sort((a, b) => a.data.order - b.data.order)
+                                .map(async (item) => {
+                                    const { Content } = await render(item);
+                                    return (
+                                        <div
+                                            class="block | flow"
+                                            data-tempo="s"
+                                        >
+                                            <h3>{item.data.title}</h3>
+                                            <Content />
+                                        </div>
+                                    );
+                                })
+                        }
                     </div>
                     <div class="image-wrapper">
                         <div class="flow" data-tempo="l">
@@ -119,16 +126,35 @@ const nav = await getEntry("navs", "home");
             text={connect}
         />
         <FAQs />
-        <!-- <Gallery images={[
-            {src: gallery7},
-            {src: gallery1},
-            {src: gallery5},
-            {src: gallery3},
-            {src: gallery4},
-            {src: gallery6},
-            {src: gallery2},
-            {src: gallery8},
-        ]} /> -->
+        <Gallery
+            images={[
+                {
+                    src: gallery5,
+                    alt: "A shape-note singing school with a class learning how to read shape notes.",
+                },
+                {
+                    src: gallery3,
+                    alt: "A group of singers sings from the Sacred Harp.",
+                },
+                {
+                    src: gallery4,
+                    alt: "A leader leads a class from the hollow square.",
+                },
+                // {
+                //     src: gallery7,
+                //     alt: "Illustration of a building with a hollow square of singers inside; a banner reading 'And turn each cursed idol out the dares to rival thee' wraps around the singers.",
+                // },
+                {
+                    src: gallery1,
+                    alt: "Music and text for Sacred Harp tune 410b 'Mutual Love'.",
+                },
+                // { src: gallery6 },
+                {
+                    src: gallery8,
+                    alt: "Singers at the All-California convention.",
+                },
+            ]}
+        />
     </div>
 </BaseLayout>
 
@@ -186,7 +212,7 @@ const nav = await getEntry("navs", "home");
     .section {
         &[data-section="regular-singings"] {
             overflow: hidden;
-            
+
             & .grid-12 {
                 & .text-wrapper {
                     --grid-col-span: span 7;
@@ -281,9 +307,10 @@ const nav = await getEntry("navs", "home");
             }
         }
 
-		& .featured-image {
-			&.offset-left {
-				left: 0;
-		}
+        .featured-image {
+            &.offset-left {
+                left: 0;
+            }
+        }
     }
 </style>
