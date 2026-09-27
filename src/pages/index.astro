@@ -10,6 +10,7 @@ import featuredImg from "@assets/all-cal-4.jpg";
 import featuredImg2 from "@assets/group-sing-1.jpg";
 import featuredImg3 from "@assets/group-sing-2.jpg";
 import featuredImg4 from "@assets/shape-mi.png";
+import featuredImg5 from "@assets/orange-grove-singing.jpg";
 import gallery1 from "@assets/notes-bg-2.jpg";
 import gallery2 from "@assets/gallery-2.jpeg";
 import gallery3 from "@assets/gallery-3.jpg";
@@ -90,11 +91,11 @@ const nav = await getEntry("navs", "home");
                             />
                             <div class="relative">
                                 <Image
-                                    alt="Four women leading from the hollow square."
+                                    alt="A singer leads a large class from the hollow square at the Orange Grove Friends Meetinghouse in Pasadena."
                                     class="featured-image offset-left"
                                     format="webp"
                                     loading="eager"
-                                    src={featuredImg3}
+                                    src={featuredImg5}
                                     width={900}
                                 />
                                 <Image
@@ -131,6 +132,10 @@ const nav = await getEntry("navs", "home");
                 {
                     src: gallery5,
                     alt: "A shape-note singing school with a class learning how to read shape notes.",
+                },
+                {
+                    src: featuredImg3,
+                    alt: "Four women leading from the hollow square.",
                 },
                 {
                     src: gallery3,
@@ -230,7 +235,7 @@ const nav = await getEntry("navs", "home");
         &:not(:first-of-type) {
             margin-block-start: var(--space-m);
             padding-block-start: var(--space-m);
-            border-block-start: 1px solid var(--brown-5);
+            border-block-start: 1px solid var(--brown-6);
         }
     }
 
